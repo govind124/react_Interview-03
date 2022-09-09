@@ -108,25 +108,7 @@
 
     <pre>const memoizedResult = useMemo(compute, dependencies);</pre>
 
-    Q.5 What is UseRef Hook ?(Implementation) <br>
-    useRef takes in a single function argument, initialValue , and returns a mutable reference object whose .current
-    value is initialized to the passed argument. useRef is essentially a “box” whose current key holds a mutable value.
-
-    <pre>const Timer = () => {
-        const intervalRef = useRef();
-    
-        useEffect(() => {
-        const id = setInterval(() => {
-        // ...
-        });
-        intervalRef.current = id;
-        return () => {
-        clearInterval(intervalRef.current);
-        };
-        });
-    
-        // ...
-        } </pre>
+  
 </body>
 
 </html>
