@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>react-interview-03</title>
+</head>
+
+<body style="background-color:grey ;color: white;">
+    <h1>React-Interview-Preparation-03</h1>
+   
+    Q.1. Difference between Axios and fetch. <br>
+    Axios :
+    Axios is used to communicate with the backend and it also supports the Promise API that is native to JS ES6.It is a
+    library which is used to make requests to an API, return data from the API, and then do things with that data in our
+    React application. Axios is a very popular (over 78k stars on Github) HTTP client, which allows us to make HTTP
+    requests from the browser.
+  
+    <pre>const getPostsData = () => {
+        axios
+        .get("https://jsonplaceholder.typicode.com/posts")
+        .then(data => console.log(data.data))
+        .catch(error => console.log(error));
+        };
+        getPostsData();</pre>
+
+    # Fetch: <br>
+    The Fetch API provides a fetch() method defined on the window object. It also provides a JavaScript interface for
+    accessing and manipulating parts of the HTTP pipeline (requests and responses). The fetch method has one mandatory
+    argument- the URL of the resource to be fetched. This method returns a Promise that can be used to retrieve the
+    response of the request.
+    EX::
+    <pre>const getPostsData = () => {
+        fetch(‘https://jsonplaceholder.typicode.com/posts’)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
+        }
+        }
+        getPostsData();</pre>
+        <img src="./Fetch_Axios.png" height="500px" width="1000px"><br>
+
+   Q.2 What is UseState Hook ?(Implementation)?<br>
+    Ans:The React useState Hook allows us to track state in a function component. State generally refers to data or properties that need to be tracking in an application.
+    <pre>Implementation
+        const Message = () => {
+        const [message, setMessage] = useState( '' );
+    
+        return (
+        <p>
+            <strong>{message}</strong>
+        </p>
+        );
+        };</pre>
+
+    Q.3. What is useEffect Hook ?(Implementation) <br>
+    useEffect :The Effect Hook, just like the name implies, carries out an effect each time there is a state change. By
+    default, it runs after the first render and every time the state is updated.
+    <pre>// 1. import useEffect
+        import { useEffect } from 'react';
+    
+        function MyComponent() {
+        // 2. call it above the returned JSX
+        // 3. pass two arguments to it: a function and an array
+        useEffect(() => {}, []);
+    
+        // return ...
+        }
+        EX--import { useEffect } from 'react';
+    
+        function User({ name }) {
+        useEffect(() => {
+        document.title = name;
+        }, [name]);
+    
+        return {name};
+        }
+    </pre>
+   Q.4 What is UseReducer Hook ?(Implementation) <br>
+    The useReducer(reducer, initialState) hook accept 2 arguments: the reducer function and the initial state. The hook
+    then returns an array of 2 items: the current state and the dispatch function..It does very similiar to setState,
+    It's a different way to manage state using Redux Pattern. Instead of updating the state directly, we dispatch
+    actions, that go to a reducer function, and this function figure out, how to compute the next state.
+
+
+    EX-- <pre>import { useReducer } from 'react';
+        function MyComponent() {
+        const [state, dispatch] = useReducer(reducer, initialState);
+        const action = {
+        type: 'ActionType'
+        };
+        return (
+        <button onClick={() => dispatch(action)}>
+            Click me
+        </button>
+        );
+        } </pre>
+
+    Q.5 What is UseMemo Hook ?(Implementation) <br>
+    Ans:useMemo() is a built-in React hook that accepts 2 arguments — a function compute that computes a result and the
+    depedencies array.The React useMemo Hook returns a memoized value.Think of memoization as caching a value so that it
+    does not need to be recalculated.The useMemo Hook only runs when one of its dependencies update.This can improve
+    performance.
+    The useMemo and useCallback Hooks are similar. The main difference is that useMemo returns a memoized value and
+    useCallback returns a memoized function. You can learn more about useCallback in the useCallback chapter.
+
+    <pre>const memoizedResult = useMemo(compute, dependencies);</pre>
+
+    Q.5 What is UseRef Hook ?(Implementation) <br>
+    useRef takes in a single function argument, initialValue , and returns a mutable reference object whose .current
+    value is initialized to the passed argument. useRef is essentially a “box” whose current key holds a mutable value.
+
+    <pre>const Timer = () => {
+        const intervalRef = useRef();
+    
+        useEffect(() => {
+        const id = setInterval(() => {
+        // ...
+        });
+        intervalRef.current = id;
+        return () => {
+        clearInterval(intervalRef.current);
+        };
+        });
+    
+        // ...
+        } </pre>
+</body>
+
+</html>
